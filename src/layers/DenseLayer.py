@@ -10,7 +10,7 @@ class DenseLayer():
         # Each neuron has 1 bias, continuing our example 5 neurons in a layer will have 5 biases
         self.biases = np.random.randn(no_neurons)
 
-    def foward(self, input: np.ndarray):
+    def forward(self, input: np.ndarray) -> None:
         # The activation (value) of each neuron is the sum of (activations*weights) + bias
         # Activation is the output of neuron
         # Weight gives how much importance to give to each neuron in previous layer
