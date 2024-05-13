@@ -5,7 +5,7 @@ import numpy as np
 # is very easy and fast to compute. Although vanishing gradient problem usually occurs in
 # deep neural nets which probably would not be the case here
 class ReLU():
-    def forward(self, input: np.ndarray) -> None:
+    def forward(self, inputs: np.ndarray) -> None:
         # Input <= 0 ---> Output = 0
         # IInput > 0 ---> Output = Input
-        self.output = np.maximum(0, input)
+        self.output = np.maximum(0, inputs)
