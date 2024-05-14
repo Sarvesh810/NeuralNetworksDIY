@@ -9,4 +9,4 @@ def mse(true_values, predicted_values):
 
 def mseGradient(true_values, predicted_values):
     # mse_gradient = (2 * (y_predicted - y_true)) / len(y_true)
-    return 2*(true_values-predicted_values)/np.size(predicted_values)
+    return 2*(predicted_values-true_values)/np.size(predicted_values)
