@@ -11,4 +11,4 @@ class ReLU():
         self.output = np.maximum(0, inputs)
 
     def backward(self, gradient: np.ndarray):
-        np.where(gradient > 0, 1, 0)
+        self.gradients = np.where(gradient > 0, 1, 0)

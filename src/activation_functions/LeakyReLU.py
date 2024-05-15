@@ -8,3 +8,6 @@ class LeakyReLU():
         # Input > 0 ---> Output = Input
         self.leakage = 0.1
         self.output = np.maximum(inputs*self.leakage, inputs)
+
+    def backward(self, gradients: np.ndarray):
+        self.gradients = np.where(gradients > 0, 1, self.leakage)

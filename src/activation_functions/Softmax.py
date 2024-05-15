@@ -10,6 +10,6 @@ class Softmax():
         exponents = np.exp(inputs - np.max(inputs))
         self.output = exponents/np.sum(exponents)
 
-    def backward(self, gradient: np.ndarray):
+    def backward(self, gradients: np.ndarray):
         matrix = np.diag(self.output) - np.outer(self.output, self.output)
-        self.gradient = np.dot(gradient, matrix)
+        self.gradients = np.dot(gradients, matrix)
