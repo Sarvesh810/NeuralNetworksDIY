@@ -8,7 +8,9 @@ class ReLU():
     def forward(self, inputs: np.ndarray) -> None:
         # Input <= 0 ---> Output = 0
         # IInput > 0 ---> Output = Input
+        self.inputs = inputs
         self.output = np.maximum(0, inputs)
 
-    def backward(self, gradient: np.ndarray):
-        self.gradients = np.where(gradient > 0, 1, 0)
+    def backward(self, gradients: np.ndarray):
+        relu_gradients = np.where(self.inputs > 0, 1, 0)
+        self.gradients = gradients * relu_gradients
