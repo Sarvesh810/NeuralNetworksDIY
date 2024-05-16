@@ -24,9 +24,9 @@ class DenseLayer():
     def backward(self, gradients: np.ndarray) -> None:
         # It can be divided into 2 steps:
         # 1. Calculating the gradients for inputs, weights and biases
-        self.d_inputs = np.dot(gradients, self.weights.T)
-        self.d_weights = np.dot(self.inputs, gradients)
-        self.d_biases = np.sum(gradients, axis=0, keepdims=True)
+        self.gradients = np.dot(gradients, self.weights.T)
+        self.d_weights = np.dot(self.inputs.T, gradients)
+        self.d_biases = np.sum(gradients, axis=0, keepdims=True).reshape(self.biases.shape)
 
         # 2. Updating those weights and biases
         self.weights -= self.learning_rate*self.d_weights
