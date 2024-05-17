@@ -10,7 +10,9 @@ class ReLU():
         # IInput > 0 ---> Output = Input
         self.inputs = inputs
         self.output = np.maximum(0, inputs)
+        return self.output
 
     def backward(self, gradients: np.ndarray):
         relu_gradients = np.where(self.inputs > 0, 1, 0)
         self.gradients = gradients * relu_gradients
+        return self.gradients
