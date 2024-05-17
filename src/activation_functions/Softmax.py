@@ -9,6 +9,7 @@ class Softmax():
         # e -> Euler's number
         exponents = np.exp(inputs - np.max(inputs, axis=1, keepdims=True))
         self.output = exponents/np.sum(exponents, axis=1, keepdims=True)
+        return self.output
 
     def backward(self, gradients: np.ndarray) -> None:
         self.gradients = np.empty_like(gradients)
@@ -16,3 +17,4 @@ class Softmax():
             out = out.reshape(-1, 1)
             matrix = np.diagflat(out) - np.dot(out, out.T)
             self.gradients[i] = np.dot(matrix, grad)
+        return self.gradients
