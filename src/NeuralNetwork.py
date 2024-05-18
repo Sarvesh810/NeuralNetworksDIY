@@ -57,7 +57,7 @@ class NeuralNetwork():
                 gradients = self.loss_function.backward(true_values=Y, predicted_values=output)
                 self.backward(gradients=gradients, learning_rate=learning_rate)
             print(f"Epoch: {epoch+1}/{epochs}", end="; ")
-            print(f"Loss: {loss}")
+            print(f"Loss: {round(loss, 6)}")
 
     # Predict a single input
     def predict(self, X: np.ndarray) -> np.ndarray:
@@ -72,4 +72,4 @@ class NeuralNetwork():
         predictions = self.predict(X_test)
         true_values = np.argmax(Y_test, axis=1)         # Get index of maximum value
         accuracy = np.mean(predictions == true_values)  # Count all the correct predictions
-        print("Accuracy: ", round(accuracy, 2))
+        print(f"Accuracy: {round(accuracy*100, 2)}%")
