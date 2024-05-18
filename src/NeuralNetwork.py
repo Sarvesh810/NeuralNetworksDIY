@@ -1,9 +1,9 @@
 import numpy as np
-from layers.DenseLayer import DenseLayer
-from activation_functions.ReLU import ReLU
-from activation_functions.Softmax import Softmax
-from layers.DenseLayer import DenseLayer
-from loss_functions.cross_entropy import CrossEntropy
+from src.layers.DenseLayer import DenseLayer
+from src.activation_functions.ReLU import ReLU
+from src.activation_functions.Softmax import Softmax
+from src.layers.DenseLayer import DenseLayer
+from src.loss_functions.cross_entropy import CrossEntropy
 
 
 class NeuralNetwork():
