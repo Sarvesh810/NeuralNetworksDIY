@@ -42,7 +42,7 @@ class NeuralNetwork():
             for batch in range(0, X_train.shape[0], batch_size):
                 X = X_train[batch:batch+batch_size]     # Slice the data in a batch iterarting over batches
                 Y = Y_train[batch:batch+batch_size]
-                
+
                 # Now, the training process can be divided into 2 steps:
                 # Step 1: Forward Propagation and calculate loss
                 output = self.forward(inputs=X)
@@ -52,3 +52,18 @@ class NeuralNetwork():
                 gradients = self.loss_function.backward(true_values=Y, predicted_values=output)
                 self.backward(gradients=gradients)
 
+    # Predict a single input
+    def predict(self, X: np.ndarray) -> np.ndarray:
+        # Forward method returns the output of the last layer
+        # The neuron with highest value is the predicted output (for multi-class models)
+        out = self.forward(X)
+        return np.argmax(out, axis=1)
+
+    def test(self, X_test: np.ndarray, Y_test: np.ndarray) -> np.ndarray:
+        # We can feed in all of the data at once here because we are only interested in the
+        # predictions and not the training
+        predictions = self.predict(X_test)
+        true_values = np.argmax(Y_test, axis=1)         # Get index of maximum value
+        accuracy = np.mean(predictions == true_values)  # Count all the correct predictions
+        print("Accuracy: ", round(accuracy, 2))
+        
