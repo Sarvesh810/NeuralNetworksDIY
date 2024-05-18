@@ -22,9 +22,12 @@ class NeuralNetwork():
         return inputs
     
     # Backward method for the whole network
-    def backward(self, gradients: np.ndarray, learning_rate: float) -> None:
+    def backward(self, gradients: np.ndarray, learning_rate: float=0.01) -> None:
         for layer in self.layers[::-1]:
-            layer.backward(gradients)
+            if isinstance(layer, DenseLayer):
+                layer.backward(gradients=gradients, learning_rate=learning_rate)
+            else:
+                layer.backward(gradients)
             gradients = layer.gradients
 
     def train(self, X_train: np.ndarray, Y_train: np.ndarray, epochs: int, batch_size: int, learning_rate: float=0.01) -> None:
@@ -32,7 +35,7 @@ class NeuralNetwork():
         # process of the neural network going over the dataset many times, shuffling the data
         # each time to make it learn more from the same data
         for epoch in range(epochs):
-            print(f"Epoch: {epoch}/{len(epochs)}")
+            
             indices = np.arange(X_train.shape[0])       # Similar to python's range() method
             np.random.shuffle(indices)
             X_train = X_train[indices]
@@ -53,6 +56,7 @@ class NeuralNetwork():
                 # Step 2: Calculate gradients w.r.t loss and Backward Propagation
                 gradients = self.loss_function.backward(true_values=Y, predicted_values=output)
                 self.backward(gradients=gradients, learning_rate=learning_rate)
+            print(f"Epoch: {epoch+1}/{epochs}", end="; ")
             print(f"Loss: {loss}")
 
     # Predict a single input
