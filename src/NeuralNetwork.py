@@ -32,6 +32,7 @@ class NeuralNetwork():
         # process of the neural network going over the dataset many times, shuffling the data
         # each time to make it learn more from the same data
         for epoch in range(epochs):
+            print(f"Epoch: {epoch}/{len(epochs)}")
             indices = np.arange(X_train.shape[0])       # Similar to python's range() method
             np.random.shuffle(indices)
             X_train = X_train[indices]
@@ -52,6 +53,7 @@ class NeuralNetwork():
                 # Step 2: Calculate gradients w.r.t loss and Backward Propagation
                 gradients = self.loss_function.backward(true_values=Y, predicted_values=output)
                 self.backward(gradients=gradients, learning_rate=learning_rate)
+            print(f"Loss: {loss}")
 
     # Predict a single input
     def predict(self, X: np.ndarray) -> np.ndarray:
