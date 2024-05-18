@@ -1,9 +1,10 @@
 import numpy as np
 from layers.DenseLayer import DenseLayer
-from src.activation_functions.ReLU import ReLU
-from src.activation_functions.Softmax import Softmax
-from src.layers.DenseLayer import DenseLayer
-from src.loss_functions.cross_entropy import CrossEntropy
+from activation_functions.ReLU import ReLU
+from activation_functions.Softmax import Softmax
+from layers.DenseLayer import DenseLayer
+from loss_functions.cross_entropy import CrossEntropy
+
 
 class NeuralNetwork():
     def __init__(self) -> None:
@@ -50,7 +51,7 @@ class NeuralNetwork():
 
                 # Step 2: Calculate gradients w.r.t loss and Backward Propagation
                 gradients = self.loss_function.backward(true_values=Y, predicted_values=output)
-                self.backward(gradients=gradients)
+                self.backward(gradients=gradients, learning_rate=learning_rate)
 
     # Predict a single input
     def predict(self, X: np.ndarray) -> np.ndarray:
@@ -66,4 +67,3 @@ class NeuralNetwork():
         true_values = np.argmax(Y_test, axis=1)         # Get index of maximum value
         accuracy = np.mean(predictions == true_values)  # Count all the correct predictions
         print("Accuracy: ", round(accuracy, 2))
-        

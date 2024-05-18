@@ -23,7 +23,7 @@ class DenseLayer():
         
         # It can be divided into 2 steps:
         # 1. Calculating the gradients for inputs, weights and biases
-        self.input_gradients = np.dot(gradients, self.weights.T)
+        self.gradients = np.dot(gradients, self.weights.T)
         self.d_weights = np.dot(self.inputs.T, gradients)
         self.d_biases = np.sum(gradients, axis=0, keepdims=True)
 
@@ -31,4 +31,4 @@ class DenseLayer():
         # Learning rate decides how big the steps will be while adjusting the parameters
         self.weights -= learning_rate*self.d_weights
         self.biases -= learning_rate*self.d_biases
-        return self.input_gradients
+        return self.gradients
