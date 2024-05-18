@@ -2,10 +2,16 @@ import numpy as np
 
 # A Dense layer is connected with all the neurons from the previous layer
 class DenseLayer():
-    def __init__(self, no_inputs:int, no_neurons: int) -> None:
+    def __init__(self, no_inputs:int, no_neurons: int, weight_initialisation="he") -> None:
+        weight_initialisation_multiple = 1
+        if weight_initialisation == "he":
+            weight_initialisation_multiple = np.sqrt(2/ no_inputs)
+        elif type(weight_initialisation) is float:
+            weight_initialisation_multiple = weight_initialisation
+
         # Take for example input array has 3 parameters/data-points and we want this layer to have 5 neurons
         # We will be making a 3x5 matrix here instead of an intuititve 5x3 matrix to help us later witht the dot product
-        self.weights = np.random.randn(no_inputs, no_neurons)
+        self.weights = np.random.randn(no_inputs, no_neurons) * weight_initialisation_multiple
 
         # Each neuron has 1 bias, continuing our example 5 neurons in a layer will have 5 biases
         self.biases = np.random.randn(1, no_neurons)
