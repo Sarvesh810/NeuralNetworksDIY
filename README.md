@@ -23,3 +23,6 @@ Open the command-line interface of your choice
 
 3. Check the example code<br>
 	[Neural Network Example](https://github.com/Sarvesh810/NeuralNetworksDIY/blob/main/notebooks/mnist_example_notebook.ipynb)
+
+### Optional Reading
+- [How Neural Networks Learn](https://khandelwalsarvesh.hashnode.dev/unboxing-neural-networks-a-quick-summary)
